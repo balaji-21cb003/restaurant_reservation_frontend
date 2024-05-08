@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import bg from "../../assests/images/bg.jpg";
 import { toast } from "react-hot-toast";
-import { useAuth } from "../authcontext/Authcontext"; // Import useAuth hook
+import { useAuth } from "../authcontext/Authcontext";
 
 export default function Login() {
   const [data, setData] = useState({
@@ -12,7 +12,7 @@ export default function Login() {
   });
 
   const navigate = useNavigate();
-  const { login } = useAuth(); // Get the login function from the context
+  const { login } = useAuth();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -30,7 +30,7 @@ export default function Login() {
         toast.error(userData.error);
       } else {
         setData({});
-        login(userData); // Set the user after successful login
+        login(userData);
         toast.success("Login Successful");
         navigate("/");
       }

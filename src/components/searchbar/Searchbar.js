@@ -9,7 +9,6 @@ export default function Searchbar() {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
-    // Fetch all restaurant details initially
     axios
       .get("http://localhost:8000/restaurantdetails")
       .then((response) => {

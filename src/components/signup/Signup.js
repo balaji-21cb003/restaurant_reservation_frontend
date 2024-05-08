@@ -13,8 +13,7 @@ export default function SignUp() {
   });
 
   const navigate = useNavigate();
-  const { login } = useAuth(); // Get the login function from the context
-
+  const { login } = useAuth(); 
   async function handleSubmit(e) {
     e.preventDefault();
     const { name, email, password } = data;
@@ -31,7 +30,7 @@ export default function SignUp() {
         toast.error(userData.error);
       } else {
         setData({});
-        login(userData); // Set the user after successful signup
+        login(userData); 
         toast.success("Successfully registered and Logged in");
         navigate("/login");
       }

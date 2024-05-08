@@ -24,14 +24,13 @@ function ReservationPage() {
     occasion: "",
     specialRequest: "",
     date: "",
-    time:"",
+    time: "",
     table: "",
     optIn: false,
     userConfirmation: false,
     covidSafetyAgreement: false,
   });
 
-  // Check if all checkboxes are checked
   const allCheckboxesChecked =
     formData.userConfirmation &&
     formData.optIn &&
@@ -43,7 +42,7 @@ function ReservationPage() {
   };
 
   const handleTimeChange = (time) => {
-    setFormData({...formData,time:time})
+    setFormData({ ...formData, time: time });
     setSelectedTime(time);
   };
 
@@ -64,7 +63,6 @@ function ReservationPage() {
     e.preventDefault();
 
     try {
-      // Add tableSize to formData
       const formDataWithTableSize = {
         ...formData,
         table: tableSize,
@@ -74,11 +72,9 @@ function ReservationPage() {
         "http://localhost:8000/tablebook",
         formDataWithTableSize
       );
-      console.log(formData);
+      // console.log(formData);
       if (response.ok) {
-        // Assuming successful reservation, display a confirmation message or redirect to a confirmation page
         console.log("Reservation successful");
-        // Reset form after successful submission
         setFormData({
           name: "",
           phoneNumber: "",
@@ -180,13 +176,6 @@ function ReservationPage() {
                     />
                   </div>
                 </div>
-
-                {/* <input
-                  type="time"
-                  value={selectedTime}
-                  onChange={handleTimeChange}
-                  className="border p-2 rounded"
-                /> */}
 
                 <ul className="flex justify-evenly mouser-pointer">
                   <button onClick={() => handleTimeChange("1:00 PM")}>

@@ -57,25 +57,21 @@ function RestaurantDetails({ searchQuery }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    // Fetch all restaurant details initially
     axios
       .get("http://localhost:8000/restaurantdetails")
       .then((response) => {
         setRestaurants(response.data);
-        setFilteredRestaurants(response.data); // Set filtered restaurants to all restaurants initially
+        setFilteredRestaurants(response.data); 
       })
       .catch((error) => {
         console.error("Error fetching restaurant details:", error);
       });
   }, []);
 
-  // Update filtered restaurants when searchQuery changes
   useEffect(() => {
-    // If searchQuery is empty, show all restaurants
     if (!searchQuery) {
       setFilteredRestaurants(restaurants);
     } else {
-      // Filter restaurants based on searchQuery
       const filtered = restaurants.filter((restaurant) => {
         const name = restaurant.Name ? restaurant.Name.toLowerCase() : "";
         const cuisine = restaurant.Cuisine
@@ -92,16 +88,13 @@ function RestaurantDetails({ searchQuery }) {
     }
   }, [searchQuery, restaurants]);
 
-  // Calculate total number of pages
   const totalPages = Math.ceil(filteredRestaurants.length / itemsPerPage);
 
-  // Paginate the filtered restaurants
   const paginatedRestaurants = filteredRestaurants.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
-  // Function to handle page change
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -216,9 +209,7 @@ function RestaurantDetails({ searchQuery }) {
         ))}
       </div>
 
-      {/* Pagination controls */}
       <div className="flex justify-between mt-5">
-        {/* Previous Button */}
         <a
           href="#"
           className="flex items-center justify-center px-3 h-8 text-sm font-medium bg-gradient-to-r rounded-sm from-blue-300 to-cyan-500  py-2 text-white  hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out"
