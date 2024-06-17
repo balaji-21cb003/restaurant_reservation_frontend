@@ -7,13 +7,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 // import axios from "axios";
 
-// axios.defaults.baseURL = "http://localhost:8000/";
+// axios.defaults.baseURL = "https://restaurant-reservation-backend-083i.onrender.com/";
 // axios.defaults.withCredentials = true;
 
 function App() {
   return (
     <div className="App">
-      <Toaster position="top-right" toastOptions={{duration:2000}}/>
+      <Toaster position="top-right" toastOptions={{ duration: 2000 }} />
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route

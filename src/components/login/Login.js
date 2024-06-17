@@ -19,7 +19,7 @@ export default function Login() {
     const { email, password } = data;
     try {
       const { data: userData } = await axios.post(
-        "http://localhost:8000/login",
+        "https://restaurant-reservation-backend-083i.onrender.com/login",
         {
           email,
           password,

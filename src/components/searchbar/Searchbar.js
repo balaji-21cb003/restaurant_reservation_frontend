@@ -10,7 +10,9 @@ export default function Searchbar() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/restaurantdetails")
+      .get(
+        "https://restaurant-reservation-backend-083i.onrender.com/restaurantdetails"
+      )
       .then((response) => {
         setRestaurants(response.data);
       })

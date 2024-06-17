@@ -69,7 +69,7 @@ function ReservationPage() {
       };
 
       const response = await axios.post(
-        "http://localhost:8000/tablebook",
+        "https://restaurant-reservation-backend-083i.onrender.com/tablebook",
         formDataWithTableSize
       );
       // console.log(formData);

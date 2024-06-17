@@ -8,13 +8,12 @@ import { Link, useNavigate } from "react-router-dom";
 import Reservertable from "../reservertable/Reservertable";
 import { useAuth } from "../authcontext/Authcontext";
 
-
 function RestaurantDetails({ searchQuery }) {
-  const [data, setData] = useState({});  
+  const [data, setData] = useState({});
   const { user, logout } = useAuth();
 
-  const navigate=useNavigate()
-  
+  const navigate = useNavigate();
+
   const image = [
     {
       imgurl:
@@ -58,10 +57,12 @@ function RestaurantDetails({ searchQuery }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/restaurantdetails")
+      .get(
+        "https://restaurant-reservation-backend-083i.onrender.com/restaurantdetails"
+      )
       .then((response) => {
         setRestaurants(response.data);
-        setFilteredRestaurants(response.data); 
+        setFilteredRestaurants(response.data);
       })
       .catch((error) => {
         console.error("Error fetching restaurant details:", error);
@@ -99,8 +100,6 @@ function RestaurantDetails({ searchQuery }) {
     setCurrentPage(page);
   };
 
- 
-
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
       <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10">
@@ -110,12 +109,12 @@ function RestaurantDetails({ searchQuery }) {
             className="rounded overflow-hidden shadow-lg"
           >
             <div className="relative">
-                <img
-                  className="w-full h-64 object-cover"
-                  src={image[index % image.length].imgurl}
-                  alt={restaurant.Name}
-                />
-                <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
+              <img
+                className="w-full h-64 object-cover"
+                src={image[index % image.length].imgurl}
+                alt={restaurant.Name}
+              />
+              <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-900 opacity-25"></div>
 
               <div className=" absolute bottom-0 left-0 bg-gradient-to-r from-blue-300 to-cyan-500 px-4 py-2 text-white text-sm hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
                 <PlaceIcon />
@@ -189,21 +188,21 @@ function RestaurantDetails({ searchQuery }) {
               </p>
             </div>
             <div className="flex items-center justify-center">
-
-              {user ?
-              <Link  to={`/reservertable/${restaurant.Name}/${restaurant.City}/${restaurant.Cost}/${restaurant.Location}`}>
-
-                <button className="px-4 py-2 mb-5 bg-[#308d46] flex items-center justify-center text-white font-semibold rounded-md shadow-md hover:bg-green-600 transition duration-300 ease-in-out">
-                  Reserve Now 
-                </button>
-              </Link>
-              :
-              <Link to={"\login"}>
-                 <button className="px-4 py-2 mb-5 bg-[#308d46] flex items-center justify-center text-white font-semibold rounded-md shadow-md hover:bg-green-600 transition duration-300 ease-in-out">
-                  Reserve Now 
-                </button>
-              </Link>
-              }
+              {user ? (
+                <Link
+                  to={`/reservertable/${restaurant.Name}/${restaurant.City}/${restaurant.Cost}/${restaurant.Location}`}
+                >
+                  <button className="px-4 py-2 mb-5 bg-[#308d46] flex items-center justify-center text-white font-semibold rounded-md shadow-md hover:bg-green-600 transition duration-300 ease-in-out">
+                    Reserve Now
+                  </button>
+                </Link>
+              ) : (
+                <Link to={"login"}>
+                  <button className="px-4 py-2 mb-5 bg-[#308d46] flex items-center justify-center text-white font-semibold rounded-md shadow-md hover:bg-green-600 transition duration-300 ease-in-out">
+                    Reserve Now
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
         ))}

@@ -13,24 +13,27 @@ export default function SignUp() {
   });
 
   const navigate = useNavigate();
-  const { login } = useAuth(); 
+  const { login } = useAuth();
   async function handleSubmit(e) {
     e.preventDefault();
     const { name, email, password } = data;
 
     try {
-      const response = await axios.post("http://localhost:8000/signup", {
-        name,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://restaurant-reservation-backend-083i.onrender.com/signup",
+        {
+          name,
+          email,
+          password,
+        }
+      );
       const userData = response.data;
       console.log(userData);
       if (userData.error) {
         toast.error(userData.error);
       } else {
         setData({});
-        login(userData); 
+        login(userData);
         toast.success("Successfully registered and Logged in");
         navigate("/login");
       }
